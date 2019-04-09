@@ -6,28 +6,40 @@ class App extends Component {
 	constructor(props) {
 		super(props);
 		this.state = {
-			name: 'burger',
-			total: 0,
-			amount: 0
+			ingredients: [
+				{
+					name: [],
+					amount: 0
+				}
+			],
+			total: 0
 		};
 	}
 
 	addIng(e) {
-		let priceIng = parseInt(e.target.getAttribute('price'));
+		let priceIng = parseFloat(e.target.getAttribute('price'));
 		let amountIng = parseInt(e.target.getAttribute('amount'));
 		let nameIng = e.target.getAttribute('name');
 
+		let currentList = this.state.ingredients;
+
+		if (!currentList.filter((e) => e.name === nameIng).length > 0) {
+			currentList.push({ name: nameIng, amount: amountIng });
+		} else {
+			for (let i = 0; i < currentList.length; i++) {
+				console.log(11);
+				if (currentList[i].name === nameIng) {
+					currentList[i].amount++;
+				}
+			}
+		}
+
 		this.setState((prevState) => ({
-			name: nameIng,
-			total: prevState.total + priceIng,
-			amount: prevState.amount + amountIng
+			ingredients: currentList,
+			total: prevState.total + priceIng
 		}));
 
-		const order = [];
-
-		order.push(nameIng, priceIng);
-		console.log(order);
-		console.log(this.state);
+		console.log(this.state.ingredients);
 	}
 	render() {
 		return (
@@ -48,10 +60,24 @@ class App extends Component {
 					</li>
 
 					<li>
-						<button>-</button>Brown Bread<button>+</button>
+						<button>-</button>Brown Bread<button
+							name="Brown Bread"
+							price={2.0}
+							amount={1}
+							onClick={this.addIng.bind(this)}
+						>
+							+
+						</button>
 					</li>
 					<li>
-						<button>-</button>Lettuce<button>+</button>
+						<button>-</button>Lettuce<button
+							name="Lettuce"
+							price={1.0}
+							amount={1}
+							onClick={this.addIng.bind(this)}
+						>
+							+
+						</button>
 					</li>
 				</ul>
 
