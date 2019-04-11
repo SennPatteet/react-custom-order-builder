@@ -92,10 +92,10 @@ class App extends Component {
 				Total: parseFloat(prevState.Total) - priceIng
 			}));
 		}
-		let sum = currentPrices.reduce((partial_sum, a) => partial_sum + a);
 
 		document.getElementById('burger').innerHTML = currentList;
 		if (currentPrices.length > 0) {
+			let sum = currentPrices.reduce((partial_sum, a) => partial_sum + a);
 			document.getElementById('price').innerHTML = '€' + sum;
 		} else {
 			document.getElementById('price').innerHTML = '';
@@ -127,8 +127,12 @@ class App extends Component {
 		document.getElementById('price').innerHTML = '';
 	};
 	checkoutButton = () => {
-		alert('Thank you for your order!');
-		window.location.reload();
+		if (this.state.Total > 0) {
+			alert('Thank you for your order!');
+			window.location.reload();
+		} else {
+			alert('Your basket is empty =(');
+		}
 	};
 	render() {
 		return (
