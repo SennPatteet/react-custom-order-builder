@@ -15,5 +15,5 @@ Powered by tears of despair and sighs of frustration.
 
 Carolien Heymans & Senn Patteet
 
-##  Pending things to do
+###  Pending things to do
  * Make it look pretty =)
