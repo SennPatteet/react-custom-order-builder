@@ -77,6 +77,12 @@ class App extends Component {
 		let sum = currentPrices.reduce((partial_sum, a) => partial_sum + a);
 		console.log(2, index, priceIndex);
 
+		this.setState((prevState) => ({
+			Ingredients: currentList,
+			Prices: currentPrices,
+			Total: prevState.Total + priceIng
+		}));
+
 		if (index !== -1 && priceIndex !== -1) {
 			currentPrices.splice(priceIndex, 1);
 			currentList.splice(index, 1);
@@ -88,11 +94,7 @@ class App extends Component {
 			document.getElementById('price').innerHTML = '';
 		}
 
-		this.setState((prevState) => ({
-			Ingredients: currentList,
-			Prices: currentPrices,
-			Total: prevState.Total + priceIng
-		}));
+		
 	};
 
 	addIng = (event) => {
