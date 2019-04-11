@@ -177,7 +177,6 @@ class App extends Component {
 							<button onClick={() => this.addBurger()}>add burger to order</button>
 							<button onClick={() => this.resetBurger()}>reset burger</button>
 						</div>
-						<button onClick={() => console.log(this.state)}> log </button>
 					</div>
 				</div>
 				<div className="orderList">
