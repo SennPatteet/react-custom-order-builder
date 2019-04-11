@@ -46,27 +46,34 @@ class App extends Component {
 	addBurger = () => {
 		let order = [ ...this.state.Ingredients ];
 		let currentPrices = [ ...this.state.Prices ];
-		let sum = currentPrices.reduce((partial_sum, a) => partial_sum + a);
 		let orderDetail = [ ...this.state.Order ];
-		orderDetail.push({
-			orderItems: order,
-			orderPrice: sum
-		});
-		console.log(1, orderDetail);
-		this.setState(() => ({
-			Ingredients: [],
-			Prices: [],
-			Order: orderDetail
-		}));
+		if (currentPrices.length > 0) {
+			let sum = currentPrices.reduce((partial_sum, a) => partial_sum + a);
 
-		let burgerList = [];
-		console.log(orderDetail);
-		for (let i = 0; i < orderDetail.length; i++) {
-			burgerList += `<li>` + orderDetail[i].orderItems + ' - €' + orderDetail[i].orderPrice + `</li>`;
+			orderDetail.push({
+				orderItems: order,
+				orderPrice: sum
+			});
+			console.log(1, orderDetail);
+			this.setState(() => ({
+				Ingredients: [],
+				Prices: [],
+				Order: orderDetail
+			}));
+
+			let burgerList = [];
+			console.log(orderDetail);
+			for (let i = 0; i < orderDetail.length; i++) {
+				burgerList += `<li>` + orderDetail[i].orderItems + ' - €' + orderDetail[i].orderPrice + `</li>`;
+			}
+
+			document.getElementById('creations').innerHTML = burgerList;
+			document.getElementById('totalCost').innerHTML = '€' + this.state.Total;
+			document.getElementById('burger').innerHTML = '';
+			document.getElementById('price').innerHTML = '';
+		} else {
+			alert('Do you want a burger made out of air? =/');
 		}
-
-		document.getElementById('creations').innerHTML = burgerList;
-		document.getElementById('totalCost').innerHTML = '€' + this.state.Total;
 	};
 
 	removeIng = (event) => {
