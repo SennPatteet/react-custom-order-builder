@@ -4,6 +4,7 @@ class IngredientsList extends Component {
 		return this.props.things.map((item, index) => (
 			<li key={index} name={item}>
 				<button
+					className="plusmin"
 					data-tag={item}
 					data-price={this.props.prices[index]}
 					onClick={this.props.removeIng(item)}
@@ -14,6 +15,7 @@ class IngredientsList extends Component {
 					{item} - € {this.props.prices[index]}
 				</span>
 				<button
+					className="plusmin"
 					data-tag={item}
 					data-price={this.props.prices[index]}
 					onClick={this.props.addIng(item)}

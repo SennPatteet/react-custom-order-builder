@@ -169,7 +169,7 @@ class App extends Component {
 					</div>
 
 					<div className="controls">
-						<h2>your chosen ingredients:</h2> <span id="burger" /> <span id="price" />
+						<h3>your chosen ingredients:</h3> <span id="burger" /> <span id="price" />
 						<br />
 						<div>
 							<button  onClick={() => this.addBurger()}>
@@ -183,7 +183,7 @@ class App extends Component {
 					</div>
 				</div>
 				<div className="orderList">
-					<h2>Your order</h2>
+					<h3>Your order</h3>
 					<ol id="creations" />
 					<h5>
 						Total costs:
