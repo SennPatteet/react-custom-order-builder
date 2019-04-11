@@ -126,6 +126,10 @@ class App extends Component {
 		document.getElementById('burger').innerHTML = '';
 		document.getElementById('price').innerHTML = '';
 	};
+	checkoutButton = () => {
+		alert('Thank you for your order!');
+		window.location.reload();
+	};
 	render() {
 		return (
 			<div className="App">
@@ -186,7 +190,7 @@ class App extends Component {
 						<span id="totalCost">€ ---</span>
 					</h5>
 
-					<button className="btn btn-success" onClick={() => alert('Thank you for your order!')}>
+					<button className="btn btn-success" onClick={() => this.checkoutButton()}>
 						Checkout
 					</button>
 				</div>
