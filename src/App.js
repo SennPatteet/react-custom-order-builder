@@ -76,15 +76,14 @@ class App extends Component {
 		let index = currentList.indexOf(event.target.dataset.tag);
 		let priceIndex = currentPrices.indexOf(priceIng);
 
-		this.setState((prevState) => ({
-			Ingredients: currentList,
-			Prices: currentPrices,
-			Total: parseFloat(prevState.Total) - priceIng
-		}));
-
 		if (index !== -1 && priceIndex !== -1) {
 			currentPrices.splice(priceIndex, 1);
 			currentList.splice(index, 1);
+			this.setState((prevState) => ({
+				Ingredients: currentList,
+				Prices: currentPrices,
+				Total: parseFloat(prevState.Total) - priceIng
+			}));
 		}
 		let sum = currentPrices.reduce((partial_sum, a) => partial_sum + a);
 
@@ -95,7 +94,6 @@ class App extends Component {
 			document.getElementById('price').innerHTML = '';
 		}
 	};
-
 	addIng = (event) => {
 		let currentList = [ ...this.state.Ingredients ];
 		let currentPrices = [ ...this.state.Prices ];
