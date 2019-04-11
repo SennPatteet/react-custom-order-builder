@@ -127,8 +127,12 @@ class App extends Component {
 		document.getElementById('price').innerHTML = '';
 	};
 	checkoutButton = () => {
-		alert('Thank you for your order!');
-		window.location.reload();
+		if (this.state.Total > 0) {
+			alert('Thank you for your order!');
+			window.location.reload();
+		} else {
+			alert('Your basket is empty =(');
+		}
 	};
 	render() {
 		return (
