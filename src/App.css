@@ -1,0 +1,56 @@
+.App {
+    box-sizing: border-box;
+    display: flex;
+    flex-direction: row;
+}
+
+
+
+.options {
+    display: flex;
+    flex-direction: column;
+
+    width: 60%;
+    margin: 10px;
+    padding: 10px;
+
+}
+
+.orderList {
+    display: flex;
+    flex-direction: column;
+    align-content: right;
+    width: 30%;
+    margin: 10px;
+    padding: 10px;
+    border: 1px solid black;
+
+}
+
+.controls {
+    display: flex;
+    margin: 10px;
+    padding: 10px;
+    width: 40%;
+    flex-direction: column;
+}
+
+.menu {
+    display: flex;
+    flex-direction: row;
+    width: 1000px;
+    margin: 10px;
+    border: 1px solid black;
+
+}
+
+ul {
+    align-content: center;
+
+    list-style-type: none;
+}
+
+.menuItems {
+    flex-direction: column;
+    margin: 10px;
+}
