@@ -48,6 +48,7 @@ class App extends Component {
 		let currentPrices = [ ...this.state.Prices ];
 		let sum = currentPrices.reduce((partial_sum, a) => partial_sum + a);
 		let orderDetail = [ ...this.state.Order ];
+
 		orderDetail.push({
 			orderItems: order,
 			orderPrice: sum
@@ -64,6 +65,7 @@ class App extends Component {
 		for (let i = 0; i < orderDetail.length; i++) {
 			burgerList += `<li>` + orderDetail[i].orderItems + ' - €' + orderDetail[i].orderPrice + `</li>`;
 		}
+
 		document.getElementById('creations').innerHTML = burgerList;
 		document.getElementById('totalCost').innerHTML = '€' + this.state.Total;
 	};
@@ -74,42 +76,38 @@ class App extends Component {
 		let priceIng = parseFloat(event.target.dataset.price);
 		let index = currentList.indexOf(event.target.dataset.tag);
 		let priceIndex = currentPrices.indexOf(priceIng);
-		let sum = currentPrices.reduce((partial_sum, a) => partial_sum + a);
-		console.log(2, index, priceIndex);
-
-		this.setState((prevState) => ({
-			Ingredients: currentList,
-			Prices: currentPrices,
-			Total: prevState.Total + priceIng
-		}));
 
 		if (index !== -1 && priceIndex !== -1) {
 			currentPrices.splice(priceIndex, 1);
 			currentList.splice(index, 1);
+			this.setState((prevState) => ({
+				Ingredients: currentList,
+				Prices: currentPrices,
+				Total: parseFloat(prevState.Total) - priceIng
+			}));
 		}
+		let sum = currentPrices.reduce((partial_sum, a) => partial_sum + a);
+
 		document.getElementById('burger').innerHTML = currentList;
 		if (currentPrices.length > 0) {
 			document.getElementById('price').innerHTML = '€' + sum;
 		} else {
 			document.getElementById('price').innerHTML = '';
 		}
-
-		
 	};
-
 	addIng = (event) => {
 		let currentList = [ ...this.state.Ingredients ];
 		let currentPrices = [ ...this.state.Prices ];
 		currentList.push(event.target.dataset.tag);
 		let priceIng = parseFloat(event.target.dataset.price);
 		currentPrices.push(priceIng);
-		let sum = currentPrices.reduce((partial_sum, a) => partial_sum + a);
 
 		this.setState((prevState) => ({
 			Ingredients: currentList,
 			Prices: currentPrices,
-			Total: parseInt(prevState.Total) + priceIng
+			Total: parseFloat(prevState.Total) + priceIng
 		}));
+		let sum = currentPrices.reduce((partial_sum, a) => partial_sum + a);
 		document.getElementById('burger').innerHTML = currentList;
 		document.getElementById('price').innerHTML = '€' + sum;
 	};
@@ -163,17 +161,18 @@ class App extends Component {
 					<div className="controls">
 						<h2>your chosen ingredients:</h2> <span id="burger" /> <span id="price" />
 						<br />
-						<div className="btn-group" role="group">
-							<button className="btn btn-secondary" onClick={() => this.addBurger()}>
+						<div>
+							<button onClick={() => this.addBurger()}>
 								add burger to order
 							</button>
-							<button className="btn btn-secondary" onClick={() => this.resetBurger()}>
+							<button  onClick={() => this.resetBurger()}>
 								reset burger
 							</button>
 						</div>
+					   <button onClick={() => console.log(this.state)}> log </button>
 					</div>
 				</div>
-				<div className="orderList">
+				<div >
 					<h2>Your order</h2>
 					<ol id="creations" />
 					<h5>
@@ -181,27 +180,10 @@ class App extends Component {
 						<span id="totalCost">€ ---</span>
 					</h5>
 
-<<<<<<< HEAD
-				<h2>Side Dish</h2>
-				<ul>
-					<li>
-						<button>-</button>Fries<button>+</button>
-					</li>
-					<li>
-						<button>-</button>Salad<button>+</button>
-					</li>
-					<li>
-						<button>-</button>Onion Rings<button>+</button>
-					</li>
-				</ul>
-
-          <h3>Total price: {this.state.total}</h3>
-=======
-					<button className="btn btn-success" onClick={() => alert('Thank you for your order!')}>
+					<button onClick={() => alert('Thank you for your order!')}>
 						Checkout
 					</button>
 				</div>
->>>>>>> Carolien
 			</div>
 		);
 	}

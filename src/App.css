@@ -1,9 +1,8 @@
-.App {
+/* .App {
     box-sizing: border-box;
     display: flex;
     flex-direction: row;
 }
-
 
 
 .options {
@@ -53,4 +52,9 @@ ul {
 .menuItems {
     flex-direction: column;
     margin: 10px;
+} */
+
+
+body {
+  background-image: url('bg.png');
 }
