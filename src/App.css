@@ -54,7 +54,35 @@ ul {
     margin: 10px;
 } */
 
+* {
+  background-image: url('bg.png');
+}
 
 body {
-  background-image: url('bg.png');
+  max-width: 70%;
+  margin: auto;
+}
+
+h2 {
+  text-align: center;
+  margin-top: 20px;
+  font-family: 'Bevan', cursive;
+}
+ h5 {
+  text-align: center;
+ }
+
+ul {
+  text-align: center;
+  list-style: none;
+  padding-left: 0px;
+}
+
+ul li {
+  padding: 10px;
+  padding-left: 0px;
+}
+
+i {
+  padding: 40px;
 }

@@ -30,8 +30,8 @@ class App extends Component {
 				Lettuce: 0.5,
 				Tomatoes: 0.5,
 				Pickles: 0.5,
-				Mayo: 0.2,
-				ketchup: 0.2
+				Mayo: 0.5,
+				ketchup: 0.5
 			}
 		};
 
@@ -46,28 +46,34 @@ class App extends Component {
 	addBurger = () => {
 		let order = [ ...this.state.Ingredients ];
 		let currentPrices = [ ...this.state.Prices ];
-		let sum = currentPrices.reduce((partial_sum, a) => partial_sum + a);
 		let orderDetail = [ ...this.state.Order ];
+		if (currentPrices.length > 0) {
+			let sum = currentPrices.reduce((partial_sum, a) => partial_sum + a);
 
-		orderDetail.push({
-			orderItems: order,
-			orderPrice: sum
-		});
-		console.log(1, orderDetail);
-		this.setState(() => ({
-			Ingredients: [],
-			Prices: [],
-			Order: orderDetail
-		}));
+			orderDetail.push({
+				orderItems: order,
+				orderPrice: sum
+			});
+			console.log(1, orderDetail);
+			this.setState(() => ({
+				Ingredients: [],
+				Prices: [],
+				Order: orderDetail
+			}));
 
-		let burgerList = [];
-		console.log(orderDetail);
-		for (let i = 0; i < orderDetail.length; i++) {
-			burgerList += `<li>` + orderDetail[i].orderItems + ' - €' + orderDetail[i].orderPrice + `</li>`;
+			let burgerList = [];
+			console.log(orderDetail);
+			for (let i = 0; i < orderDetail.length; i++) {
+				burgerList += `<li>` + orderDetail[i].orderItems + ' - €' + orderDetail[i].orderPrice + `</li>`;
+			}
+
+			document.getElementById('creations').innerHTML = burgerList;
+			document.getElementById('totalCost').innerHTML = '€' + this.state.Total;
+			document.getElementById('burger').innerHTML = '';
+			document.getElementById('price').innerHTML = '';
+		} else {
+			alert('Do you want a burger made out of air? =/');
 		}
-
-		document.getElementById('creations').innerHTML = burgerList;
-		document.getElementById('totalCost').innerHTML = '€' + this.state.Total;
 	};
 
 	removeIng = (event) => {
@@ -120,12 +126,16 @@ class App extends Component {
 		document.getElementById('burger').innerHTML = '';
 		document.getElementById('price').innerHTML = '';
 	};
+	checkoutButton = () => {
+		alert('Thank you for your order!');
+		window.location.reload();
+	};
 	render() {
 		return (
 			<div className="App">
 				<div className="menu">
 					<div className="options">
-						<h2>Build A Burger</h2>
+						<h2><i class="fas fa-hamburger"></i>Build A Burger<i class="fas fa-hamburger"></i></h2>
 						<h5>Buns</h5>
 						<ul>
 							<IngredientsList
@@ -162,17 +172,17 @@ class App extends Component {
 						<h2>your chosen ingredients:</h2> <span id="burger" /> <span id="price" />
 						<br />
 						<div>
-							<button onClick={() => this.addBurger()}>
+							<button  onClick={() => this.addBurger()}>
 								add burger to order
 							</button>
-							<button  onClick={() => this.resetBurger()}>
+							<button onClick={() => this.resetBurger()}>
 								reset burger
 							</button>
 						</div>
-					   <button onClick={() => console.log(this.state)}> log </button>
+						<button onClick={() => console.log(this.state)}> log </button>
 					</div>
 				</div>
-				<div >
+				<div className="orderList">
 					<h2>Your order</h2>
 					<ol id="creations" />
 					<h5>
@@ -180,7 +190,7 @@ class App extends Component {
 						<span id="totalCost">€ ---</span>
 					</h5>
 
-					<button onClick={() => alert('Thank you for your order!')}>
+					<button onClick={() => this.checkoutButton()}>
 						Checkout
 					</button>
 				</div>
