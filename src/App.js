@@ -132,6 +132,8 @@ class App extends Component {
 						<button>-</button>Onion Rings<button>+</button>
 					</li>
 				</ul>
+
+          <h3>Total price: {this.state.total}</h3>
 			</div>
 		);
 	}
