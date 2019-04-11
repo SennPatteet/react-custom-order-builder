@@ -193,7 +193,8 @@ class App extends Component {
 						Total costs:
 						<span id="totalCost">€ ---</span>
 					</h5>
-
+					<textarea class="form-control" placeholder="Anything you would like to add?" />
+					<br />
 					<button className="btn btn-success" onClick={() => this.checkoutButton()}>
 						Checkout
 					</button>
