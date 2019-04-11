@@ -64,6 +64,7 @@ class App extends Component {
 		for (let i = 0; i < orderDetail.length; i++) {
 			burgerList += `<li>` + orderDetail[i].orderItems + ' - €' + orderDetail[i].orderPrice + `</li>`;
 		}
+
 		document.getElementById('creations').innerHTML = burgerList;
 		document.getElementById('totalCost').innerHTML = '€' + this.state.Total;
 	};
@@ -74,25 +75,25 @@ class App extends Component {
 		let priceIng = parseFloat(event.target.dataset.price);
 		let index = currentList.indexOf(event.target.dataset.tag);
 		let priceIndex = currentPrices.indexOf(priceIng);
-		let sum = currentPrices.reduce((partial_sum, a) => partial_sum + a);
-		console.log(2, index, priceIndex);
+
+		this.setState((prevState) => ({
+			Ingredients: currentList,
+			Prices: currentPrices,
+			Total: parseFloat(prevState.Total) - priceIng
+		}));
 
 		if (index !== -1 && priceIndex !== -1) {
 			currentPrices.splice(priceIndex, 1);
 			currentList.splice(index, 1);
 		}
+		let sum = currentPrices.reduce((partial_sum, a) => partial_sum + a);
+
 		document.getElementById('burger').innerHTML = currentList;
 		if (currentPrices.length > 0) {
 			document.getElementById('price').innerHTML = '€' + sum;
 		} else {
 			document.getElementById('price').innerHTML = '';
 		}
-
-		this.setState((prevState) => ({
-			Ingredients: currentList,
-			Prices: currentPrices,
-			Total: prevState.Total + priceIng
-		}));
 	};
 
 	addIng = (event) => {
@@ -101,13 +102,13 @@ class App extends Component {
 		currentList.push(event.target.dataset.tag);
 		let priceIng = parseFloat(event.target.dataset.price);
 		currentPrices.push(priceIng);
-		let sum = currentPrices.reduce((partial_sum, a) => partial_sum + a);
 
 		this.setState((prevState) => ({
 			Ingredients: currentList,
 			Prices: currentPrices,
-			Total: parseInt(prevState.Total) + priceIng
+			Total: parseFloat(prevState.Total) + priceIng
 		}));
+		let sum = currentPrices.reduce((partial_sum, a) => partial_sum + a);
 		document.getElementById('burger').innerHTML = currentList;
 		document.getElementById('price').innerHTML = '€' + sum;
 	};
@@ -169,6 +170,7 @@ class App extends Component {
 								reset burger
 							</button>
 						</div>
+						<button onClick={() => console.log(this.state)}> log </button>
 					</div>
 				</div>
 				<div className="orderList">
