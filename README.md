@@ -15,4 +15,4 @@ Powered by tears and sighs of frustration.
 Carolien Heymans & Senn Patteet
 
 ##  Pending things to do
-Make it look pretty =)
+ * Make it look pretty =)
