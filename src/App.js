@@ -30,8 +30,8 @@ class App extends Component {
 				Lettuce: 0.5,
 				Tomatoes: 0.5,
 				Pickles: 0.5,
-				Mayo: 0.2,
-				ketchup: 0.2
+				Mayo: 0.5,
+				ketchup: 0.5
 			}
 		};
 
@@ -183,7 +183,6 @@ class App extends Component {
 								reset burger
 							</button>
 						</div>
-						<button onClick={() => console.log(this.state)}> log </button>
 					</div>
 				</div>
 				<div className="orderList">
