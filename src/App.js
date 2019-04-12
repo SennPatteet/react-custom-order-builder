@@ -92,10 +92,10 @@ class App extends Component {
 				Total: parseFloat(prevState.Total) - priceIng
 			}));
 		}
-		let sum = currentPrices.reduce((partial_sum, a) => partial_sum + a);
 
 		document.getElementById('burger').innerHTML = currentList;
 		if (currentPrices.length > 0) {
+			let sum = currentPrices.reduce((partial_sum, a) => partial_sum + a);
 			document.getElementById('price').innerHTML = '€' + sum;
 		} else {
 			document.getElementById('price').innerHTML = '';
@@ -127,8 +127,12 @@ class App extends Component {
 		document.getElementById('price').innerHTML = '';
 	};
 	checkoutButton = () => {
-		alert('Thank you for your order!');
-		window.location.reload();
+		if (this.state.Total > 0) {
+			alert('Thank you for your order!');
+			window.location.reload();
+		} else {
+			alert('Your basket is empty =(');
+		}
 	};
 	render() {
 		return (
@@ -136,6 +140,10 @@ class App extends Component {
 			<div className="App">
 				<div className="menu">
 					<div className="options">
+						<h2>
+							<i class="fas fa-hamburger" />Build A Burger<i class="fas fa-hamburger" />
+						</h2>
+
 						<h5>Buns</h5>
 						<ul>
 							<IngredientsList
@@ -174,13 +182,11 @@ class App extends Component {
 						<h3>your chosen ingredients:</h3> <span id="burger" /> <span id="price" />
 						<br />
 						<div>
-							<button  onClick={() => this.addBurger()}>
-								add burger to order
-							</button>
-							<button onClick={() => this.resetBurger()}>
-								reset burger
-							</button>
+							<button onClick={() => this.addBurger()}>add burger to order</button>
+							<button onClick={() => this.resetBurger()}>reset burger</button>
 						</div>
+					</div>
+
 				</div>
 				<div className="orderList">
 					<h3>Your order</h3>
@@ -189,8 +195,9 @@ class App extends Component {
 						Total costs:
 						<span id="totalCost">€ ---</span>
 					</h5>
-
-					<button onClick={() => this.checkoutButton()}>
+					<textarea class="form-control" placeholder="Anything you would like to add?" />
+					<br />
+					<button className="btn btn-success" onClick={() => this.checkoutButton()}>
 						Checkout
 					</button>
 				</div>
@@ -199,6 +206,5 @@ class App extends Component {
 		);
 	}
 }
-
 
 export default App;
