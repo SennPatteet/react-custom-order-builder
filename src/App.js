@@ -132,10 +132,10 @@ class App extends Component {
 	};
 	render() {
 		return (
+			<div><h2><i className="fas fa-hamburger"></i>Build A Burger<i className="fas fa-hamburger"></i></h2>
 			<div className="App">
 				<div className="menu">
 					<div className="options">
-						<h2><i class="fas fa-hamburger"></i>Build A Burger<i class="fas fa-hamburger"></i></h2>
 						<h5>Buns</h5>
 						<ul>
 							<IngredientsList
@@ -168,6 +168,8 @@ class App extends Component {
 						</ul>
 					</div>
 
+
+					</div>
 					<div className="controls">
 						<h3>your chosen ingredients:</h3> <span id="burger" /> <span id="price" />
 						<br />
@@ -179,8 +181,6 @@ class App extends Component {
 								reset burger
 							</button>
 						</div>
-						<button onClick={() => console.log(this.state)}> log </button>
-					</div>
 				</div>
 				<div className="orderList">
 					<h3>Your order</h3>
@@ -194,6 +194,7 @@ class App extends Component {
 						Checkout
 					</button>
 				</div>
+			</div>
 			</div>
 		);
 	}
