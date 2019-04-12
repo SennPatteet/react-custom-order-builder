@@ -140,9 +140,6 @@ class App extends Component {
 			<div className="App">
 				<div className="menu">
 					<div className="options">
-						<h2>
-							<i class="fas fa-hamburger" />Build A Burger<i class="fas fa-hamburger" />
-						</h2>
 
 						<h5>Buns</h5>
 						<ul>
@@ -176,8 +173,6 @@ class App extends Component {
 						</ul>
 					</div>
 
-
-					</div>
 					<div className="controls">
 						<h3>your chosen ingredients:</h3> <span id="burger" /> <span id="price" />
 						<br />
@@ -187,22 +182,25 @@ class App extends Component {
 						</div>
 					</div>
 
+
+					</div>
+
 				</div>
 				<div className="orderList">
 					<h3>Your order</h3>
 					<ol id="creations" />
 					<h5>
-						Total costs:
-						<span id="totalCost">€ ---</span>
+						Total costs: 
+						<span id="totalCost"> €  ---</span>
 					</h5>
-					<textarea class="form-control" placeholder="Anything you would like to add?" />
+					<textarea className="form-control" placeholder="Anything you would like to add?" />
 					<br />
 					<button className="btn btn-success" onClick={() => this.checkoutButton()}>
 						Checkout
 					</button>
 				</div>
 			</div>
-			</div>
+
 		);
 	}
 }

@@ -1,66 +1,10 @@
-/* .App {
-    box-sizing: border-box;
-    display: flex;
-    flex-direction: row;
-}
-
-
-.options {
-    display: flex;
-    flex-direction: column;
-
-    width: 60%;
-    margin: 10px;
-    padding: 10px;
-
-}
-
-.orderList {
-    display: flex;
-    flex-direction: column;
-    align-content: right;
-    width: 30%;
-    margin: 10px;
-    padding: 10px;
-    border: 1px solid black;
-
-}
-
-.controls {
-    display: flex;
-    margin: 10px;
-    padding: 10px;
-    width: 40%;
-    flex-direction: column;
-}
-
-.menu {
-    display: flex;
-    flex-direction: row;
-    width: 1000px;
-    margin: 10px;
-    border: 1px solid black;
-
-}
-
-ul {
-    align-content: center;
-
-    list-style-type: none;
-}
-
-.menuItems {
-    flex-direction: column;
-    margin: 10px;
-} */
 
 * {
-  background-image: url('bg.png');
-  color: #283044;
+  background-color: #E9F1F7;
 }
 
 body {
-  max-width: 90%;
+  max-width: 70%;
   margin: auto;
 }
 
@@ -71,7 +15,8 @@ h2 {
 }
  h5 {
   text-align: center;
-  font-family: 'Bevan', cursive;
+  font-family: helvetica,arial;
+  font-weight: bold;
  }
 
 ul {
@@ -83,43 +28,51 @@ ul {
 ul li {
   padding: 10px;
   padding-left: 0px;
-  font-weight: bold;
 }
 
 i {
   padding: 40px;
 }
 
+button {
+  background: white;
+  border: solid 0.4px black;
+  margin: 3px;
+}
 
+button:focus {
+  outline: none;
+}
+
+button:hover {
+  color: white;
+  background: grey;
+  border: solid 0.4px white;
+  margin: 3px;
+  transition: 0.2s;
+}
 
 .App {
     box-sizing: border-box;
     display: flex;
     flex-direction: row;
 }
-
-
 .options {
     display: flex;
     flex-direction: column;
-
     width: 60%;
     margin: 10px;
     padding: 10px;
-
 }
-
 .orderList {
     display: flex;
     flex-direction: column;
     align-content: right;
-    width: 30%;
+    width: 97.9%;
     margin: 10px;
     padding: 10px;
     border: 1px solid black;
-
 }
-
 .controls {
     display: flex;
     margin: 10px;
@@ -127,20 +80,12 @@ i {
     width: 40%;
     flex-direction: column;
 }
-
 .menu {
     display: flex;
     flex-direction: row;
     width: 1000px;
     margin: 10px;
     border: 1px solid black;
-
-}
-
-ul {
-    align-content: center;
-
-    list-style-type: none;
 }
 
 .menuItems {
