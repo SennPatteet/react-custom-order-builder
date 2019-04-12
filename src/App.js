@@ -139,12 +139,11 @@ class App extends Component {
 	};
 	render() {
 		return (
+			<div><h2><i className="fas fa-hamburger"></i>Build A Burger<i className="fas fa-hamburger"></i></h2>
 			<div className="App">
 				<div className="menu">
 					<div className="options">
-						<h2>
-							<i class="fas fa-hamburger" />Build A Burger<i class="fas fa-hamburger" />
-						</h2>
+
 						<h5>Buns</h5>
 						<ul>
 							<IngredientsList
@@ -185,21 +184,26 @@ class App extends Component {
 							<button onClick={() => this.resetBurger()}>reset burger</button>
 						</div>
 					</div>
+
+
+					</div>
+
 				</div>
 				<div className="orderList">
 					<h3>Your order</h3>
 					<ol id="creations" />
 					<h5>
-						Total costs:
-						<span id="totalCost">€ ---</span>
+						Total costs: 
+						<span id="totalCost"> €  ---</span>
 					</h5>
-					<textarea class="form-control" placeholder="Anything you would like to add?" />
+					<textarea className="form-control" placeholder="Anything you would like to add?" />
 					<br />
 					<button className="btn btn-success" onClick={() => this.checkoutButton()}>
 						Checkout
 					</button>
 				</div>
 			</div>
+
 		);
 	}
 }
