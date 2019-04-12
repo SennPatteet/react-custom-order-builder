@@ -50,12 +50,6 @@ class App extends Component {
 		let orderDetail = [ ...this.state.Order ];
 		if (currentPrices.length > 0) {
 			let sum = currentPrices.reduce((partial_sum, a) => partial_sum + a);
-
-			orderDetail.push({
-				orderItems: order,
-				orderPrice: sum
-			});
-
 			this.setState((prevState) => ({
 				Ingredients: [],
 				Prices: [],
@@ -63,16 +57,20 @@ class App extends Component {
 				Order: orderDetail
 			}));
 
+			orderDetail.push({
+				orderItems: order,
+				orderPrice: sum
+			});
+
 			let burgerList = [];
-			console.log(1, orderDetail);
 			for (let i = 0; i < orderDetail.length; i++) {
 				burgerList += `<li>` + orderDetail[i].orderItems + ' - €' + orderDetail[i].orderPrice + `</li>`;
+
+				document.getElementById('creations').innerHTML = burgerList;
+				document.getElementById('burger').innerHTML = '';
+				document.getElementById('price').innerHTML = '';
+				document.getElementById('totalCost').innerHTML = '€' + (this.state.Total + sum);
 			}
-			console.log(2, this.state.Total);
-			document.getElementById('creations').innerHTML = burgerList;
-			document.getElementById('totalCost').innerHTML = '€' + this.state.Total;
-			document.getElementById('burger').innerHTML = '';
-			document.getElementById('price').innerHTML = '';
 		} else {
 			alert('Do you want a burger made out of air? =/');
 		}
