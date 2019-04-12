@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import IngredientsList from './IngredientsList';
+import IngredientsList from './components/IngredientsList';
 import 'bootstrap/dist/css/bootstrap.css';
 import './App.css';
 
@@ -118,13 +118,16 @@ class App extends Component {
 		document.getElementById('price').innerHTML = '€' + sum;
 	};
 	resetBurger = () => {
-		this.setState(() => ({
-			Ingredients: [],
-			Prices: [],
-			Total: 0
-		}));
-		document.getElementById('burger').innerHTML = '';
-		document.getElementById('price').innerHTML = '';
+		let currentPrices = [ ...this.state.Prices ];
+		if (currentPrices.length > 0) {
+			this.setState(() => ({
+				Ingredients: [],
+				Prices: [],
+				Total: 0
+			}));
+			document.getElementById('burger').innerHTML = '';
+			document.getElementById('price').innerHTML = '';
+		}
 	};
 	checkoutButton = () => {
 		if (this.state.Total > 0) {
