@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import IngredientsList from './components/IngredientsList';
+// this generates the ingredients found in the menu, along with the +/- buttons
 import 'bootstrap/dist/css/bootstrap.css';
 import './App.css';
 
@@ -35,7 +36,7 @@ class App extends Component {
 				ketchup: 0.5
 			}
 		};
-
+		//use keys and values found in menu array to generate the list of possible ingredients for your burger
 		this.keysBuns = Object.keys(Menu.Bun);
 		this.keysPatties = Object.keys(Menu.Patty);
 		this.keysAddons = Object.keys(Menu.Addons);
@@ -45,10 +46,13 @@ class App extends Component {
 		this.keys = Object.keys(this.state.Order);
 	}
 	addBurger = () => {
+		//add your finished burger to the order list
 		let order = [ ...this.state.Ingredients ];
 		let currentPrices = [ ...this.state.Prices ];
 		let orderDetail = [ ...this.state.Order ];
+
 		if (currentPrices.length > 0) {
+			//make sure there is an actual burger to be added
 			let sum = currentPrices.reduce((partial_sum, a) => partial_sum + a);
 			this.setState((prevState) => ({
 				Ingredients: [],
@@ -56,27 +60,30 @@ class App extends Component {
 				Total: parseFloat(prevState.Total) + sum,
 				Order: orderDetail
 			}));
-
+			//push it to the list of orders
 			orderDetail.push({
 				orderItems: order,
 				orderPrice: sum
 			});
-
+			//print it in the checkout in a list with the total price for the burger
 			let burgerList = [];
 			for (let i = 0; i < orderDetail.length; i++) {
 				burgerList += `<li>` + orderDetail[i].orderItems + ' - €' + orderDetail[i].orderPrice + `</li>`;
 
 				document.getElementById('creations').innerHTML = burgerList;
+				document.getElementById('totalCost').innerHTML = '€' + (this.state.Total + sum);
+				//clear the 'creations' list, make room for a new burger
 				document.getElementById('burger').innerHTML = '';
 				document.getElementById('price').innerHTML = '';
-				document.getElementById('totalCost').innerHTML = '€' + (this.state.Total + sum);
 			}
 		} else {
+			//har har I'm so funny (happens if 'creations' is empty, meaning there is no burger created)
 			alert('Do you want a burger made out of air? =/');
 		}
 	};
 
 	removeIng = (event) => {
+		//remove the chosen ingredient and subtract the price form the total
 		let currentList = [ ...this.state.Ingredients ];
 		let currentPrices = [ ...this.state.Prices ];
 		let priceIng = parseFloat(event.target.dataset.price);
@@ -91,7 +98,7 @@ class App extends Component {
 				Prices: currentPrices
 			}));
 		}
-
+		//print the changes, if the removal results in no more ingredients-> clear the list
 		document.getElementById('burger').innerHTML = currentList;
 		if (currentPrices.length > 0) {
 			let sum = currentPrices.reduce((partial_sum, a) => partial_sum + a);
@@ -101,23 +108,24 @@ class App extends Component {
 		}
 	};
 	addIng = (event) => {
+		//add chosen ingredients to the creation list for an overview of the burger being created.
 		let currentList = [ ...this.state.Ingredients ];
 		let currentPrices = [ ...this.state.Prices ];
 		currentList.push(event.target.dataset.tag);
 		let priceIng = parseFloat(event.target.dataset.price);
 		currentPrices.push(priceIng);
-
+		//add to state
 		this.setState((prevState) => ({
 			Ingredients: currentList,
 			Prices: currentPrices
 		}));
+		//print it in the list
 		let sum = currentPrices.reduce((partial_sum, a) => partial_sum + a);
 		document.getElementById('burger').innerHTML = currentList;
 		document.getElementById('price').innerHTML = '€' + sum;
 	};
 	resetBurger = () => {
-		// let currentPrices = [ ...this.state.Prices ];
-		// if (currentPrices.length > 0) {
+		//reset your creation, start over
 		this.setState(() => ({
 			Ingredients: [],
 			Prices: []
@@ -126,11 +134,13 @@ class App extends Component {
 		document.getElementById('price').innerHTML = '';
 	};
 	checkoutButton = () => {
+		// when the customer is done creating his/her dream burgers, they can checkout and give us their money!
 		console.log(2, this.state.Order);
 		if (this.state.Order.length > 0) {
 			alert('Thank you for your order!');
 			window.location.reload();
 		} else {
+			//notify that basket is empty
 			alert('Your basket is empty =(');
 		}
 	};
@@ -146,8 +156,10 @@ class App extends Component {
 							<h5>Buns</h5>
 							<ul>
 								<IngredientsList
+									//give the values for each ingredient (name, price)
 									things={this.keysBuns}
 									prices={this.valuesBuns}
+									// the functions to remove and add the ingredients
 									addIng={() => this.addIng}
 									removeIng={() => this.removeIng}
 								/>

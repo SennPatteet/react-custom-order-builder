@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 class IngredientsList extends Component {
 	render() {
 		return this.props.things.map((item, index) => (
+			// get the keys and values from the menu array
 			<li key={index} name={item}>
 				<button
 					className="plusmin"
